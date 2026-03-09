@@ -40,6 +40,7 @@
 - [ ] Integrar código existente: `api.js` → `api.ts`, `fetchApi()`, `apiBuilder.ts`
 - [ ] Configurar cliente Supabase JS
 - [ ] Páginas: Login, Register, Home (placeholder)
+- [ ] Cookies: Gestión de administración de datos 
 - [ ] Gestión de sesión (Zustand store)
 - [ ] Variables de entorno frontend
 
