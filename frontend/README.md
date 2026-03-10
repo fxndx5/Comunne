@@ -1,72 +1,98 @@
-# Frontend — Comunne
+# 📱 LOGINAPP
 
-**Stack:** React 18 + TypeScript + Vite
-**Responsable:** Dev B
-
----
-
-## Código Existente Integrado
-
-| Archivo | Origen | Estado |
-|---|---|---|
-| `src/api/api.ts` | Migrado de `api.js` | Integrar |
-| `src/api/apiBuilder.ts` | Existente | Mantener y extender |
-| `fetchApi()` | Función existente | Base de todas las llamadas |
+Aplicación desarrollada con **React Native** utilizando **Expo**.  
+Este documento describe la estructura del proyecto, el propósito de cada carpeta y los comandos esenciales para crear e iniciar la aplicación.
 
 ---
 
-## Estructura
+## 📁 Estructura del Proyecto
 
-```
-frontend/
-├── src/
-│   ├── api/
-│   │   ├── api.ts           # fetchApi() — capa base HTTP
-│   │   ├── apiBuilder.ts    # Constructores de peticiones (existente)
-│   │   └── endpoints/
-│   │       ├── auth.ts
-│   │       ├── services.ts
-│   │       ├── matches.ts
-│   │       └── users.ts
-│   ├── components/
-│   │   ├── Map/             # Mapa Leaflet con servicios
-│   │   ├── ServiceCard/
-│   │   ├── MatchCard/
-│   │   ├── Chat/            # Chat Realtime
-│   │   └── ReviewForm/
-│   ├── pages/
-│   │   ├── Login.tsx
-│   │   ├── Register.tsx
-│   │   ├── Home.tsx         # Mapa + servicios cercanos
-│   │   ├── MyServices.tsx
-│   │   ├── Matches.tsx
-│   │   ├── Profile.tsx
-│   │   └── Transaction.tsx
-│   ├── hooks/
-│   │   ├── useAuth.ts
-│   │   ├── useMatches.ts
-│   │   └── useRealtime.ts   # Supabase Realtime suscripción
-│   └── store/
-│       └── authStore.ts     # Zustand — sesión usuario
-├── public/
-├── index.html
-├── vite.config.ts
-├── tsconfig.json
-└── .env.example
-```
+### `.vscode/`
+Configuraciones específicas para Visual Studio Code:
+- Ajustes del editor
+- Extensiones recomendadas
+- Configuración de depuración
 
-## Setup Local
+### `app/`
+Carpeta principal donde se organiza la estructura de la aplicación.  
+Aquí suelen ubicarse pantallas, navegación, layouts y rutas (especialmente en proyectos con Expo Router).
 
+### `assets/`
+Archivos estáticos:
+- Imágenes
+- Íconos
+- Fuentes
+- Sonidos
+
+### `components/`
+Componentes reutilizables de la interfaz:
+- Botones
+- Inputs
+- Tarjetas
+- Headers
+- Elementos UI reutilizables
+
+### `constants/`
+Variables globales y configuraciones:
+- Paleta de colores
+- Tamaños de fuente
+- URLs de API
+- Configuración general de la app
+
+### `hooks/`
+Custom Hooks de React:
+- Manejo de estados complejos
+- Lógica reutilizable
+- Peticiones a APIs
+- Autenticación
+
+### `node_modules/`
+Dependencias instaladas del proyecto.  
+Se genera automáticamente al instalar paquetes.
+
+### `scripts/`
+Scripts auxiliares para automatizar tareas:
+- Limpieza de caché
+- Generación de builds
+- Scripts personalizados
+
+---
+
+## 📄 Archivos principales
+
+### `app.json`
+Configuración de Expo:
+- Nombre de la app
+- Íconos
+- Permisos
+- Configuración de builds
+
+### `package.json`
+Define:
+- Dependencias
+- Scripts de ejecución
+- Información del proyecto
+
+### `tsconfig.json`
+Configuración del compilador TypeScript.
+
+### `eslint.config.js`
+Reglas de estilo y calidad de código.
+
+### `.gitignore`
+Archivos y carpetas ignorados por Git.
+
+### `README.md`
+Documentación del proyecto.
+
+---
+
+# 🚀 Comandos esenciales
+
+## Crear un nuevo proyecto con Expo
 ```bash
-npm install
-cp .env.example .env   # Rellenar con URL del backend y Supabase
-npm run dev
-```
+npx create-expo-app@latest nombre-de-tu-app
 
-## Variables de Entorno
-
-```env
-VITE_API_URL=http://localhost:8000
-VITE_SUPABASE_URL=https://xxxx.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJ...
-```
+## Comnandos esenciales
+```bash
+npx expo start
