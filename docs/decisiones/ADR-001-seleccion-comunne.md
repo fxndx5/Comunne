@@ -2,7 +2,7 @@
 
 **Estado:** Aceptado
 **Fecha:** 08/03/2026
-**Autor:** Guillermo Santos
+**Autor:** Juan de Dios
 **Análisis previo:** Panel IA (ChatGPT, Gemini, DeepSeek, Claude Sonnet 4.6)
 
 ---

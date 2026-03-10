@@ -31,8 +31,8 @@ export interface Match {
 
 export const currentUser: User = {
   id: "me",
-  name: "Guillermo Santos",
-  avatar: "GS",
+  name: "Juan de Dios",
+  avatar: "JD",
   bio: "Desarrollador DAM con ganas de aprender y enseñar.",
   time_balance: 120,
   reputation_as_provider: 4.8,

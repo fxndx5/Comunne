@@ -10,7 +10,7 @@
 
 | Participante | Rol |
 |---|---|
-| Guillermo Santos | Desarrollador principal (autor TFG) |
+| Juan de Dios | Desarrollador principal (autor TFG) |
 | ChatGPT | Panel IA — Experto evaluador |
 | Gemini | Panel IA — Experto evaluador |
 | Claude Sonnet 4.6 | Panel IA — Experto evaluador |
@@ -33,7 +33,7 @@ Extender las ideas sobre el proyecto PFG en curso y aclarar las ideas y el stack
 ### 2. Selección del Proyecto Final: **Comunne**
 **Decisión:** Se adopta **Comunne** (marketplace de trueque de tiempo y habilidades local) como proyecto definitivo del TFG.
 **Método de análisis:** Conteo de Borda ponderado por perfil experto sobre 4 propuestas evaluadas por panel de 4 IAs independientes.
-**Decisión final:** Tomada por el autor del TFG, Guillermo Santos, tras revisar el análisis completo del panel.
+**Decisión final:** Tomada por el autor del TFG, Juan de Dios, tras revisar el análisis completo del panel.
 
 Ver justificación completa en [ADR-001](../decisiones/ADR-001-seleccion-comunne.md).
 
@@ -86,7 +86,7 @@ Ver justificación completa en [ADR-001](../decisiones/ADR-001-seleccion-comunne
 | Implementar auth con Supabase Auth | Dev A + Dev B | 15/03/2026 |
 | Motor de matching TF-IDF inicial | Dev A | 22/03/2026 |
 | MVP funcional (S4) | Ambos | 30/03/2026 |
-| Entrega final TFG | Guillermo Santos | 29/05/2026 |
+| Entrega final TFG | Juan de Dios | 29/05/2026 |
 
 ---
 
@@ -99,4 +99,4 @@ Ver justificación completa en [ADR-001](../decisiones/ADR-001-seleccion-comunne
 ---
 
 *Acta redactada por: Claude Sonnet 4.6 (asistente de documentación)*
-*Aprobada por: Guillermo Santos*
+*Aprobada por: Juan de Dios*
