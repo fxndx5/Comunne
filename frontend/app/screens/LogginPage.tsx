@@ -60,22 +60,31 @@ export default function LogPage() {
 
         return data; */
 
-        //FUNcionalidad nueva con fetchAPI y apiBuilder
+        // MODO DEMO: si no hay backend activo, cualquier credencial válida entra
+        // TODO Sprint S1 — reemplazar por llamada real cuando el backend esté desplegado
+        const DEMO_MODE = true;
+
+        if (DEMO_MODE) {
+          showModal({
+            type: "success",
+            title: "Login correcto",
+            message: `Bienvenido, ${email}`,
+          });
+          return { success: true };
+        }
+
+        // Llamada real al backend (activar cuando esté en Render)
         const data = await login(email, password);
 
         console.log("Usuario logueado:", data.data?.user);
 
         if (data.success) {
-
           showModal({
             type: "success",
             title: "Login correcto",
             message: `Bienvenido, ${data.data?.user.name ?? data.data?.user.email}`,
           });
-
-          // router.push("/screens/TestInput");
         } else {
-          // setErrorGeneral(data.message);
           showModal({
             type: "error",
             title: "Error al iniciar sesión",
