@@ -1,0 +1,102 @@
+name: Security CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  # ── Dependencias con vulnerabilidades conocidas ───────────────────────────
+  dependency-audit:
+    name: Dependency Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python — Safety check
+        run: |
+          pip install safety
+          if [ -f backend/requirements.txt ]; then
+            safety check -r backend/requirements.txt --output text || true
+          fi
+
+      - name: Node — npm audit (frontend)
+        working-directory: frontend
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high || true
+          fi
+
+      - name: Node — npm audit (mobile)
+        working-directory: mobile
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high || true
+          fi
+
+  # ── Análisis estático de seguridad (SAST) ────────────────────────────────
+  sast:
+    name: Static Analysis (SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python — Bandit
+        run: |
+          pip install bandit
+          if [ -d backend ]; then
+            bandit -r backend/ -ll -ii --exit-zero
+          fi
+
+      - name: Secrets scan — Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Análisis de código TypeScript/JS ─────────────────────────────────────
+  lint-security:
+    name: ESLint Security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install & lint (frontend)
+        working-directory: frontend
+        run: |
+          if [ -f package.json ]; then
+            npm ci --prefer-offline || npm install
+            npx eslint . --ext .ts,.tsx --no-eslintrc \
+              -c '{"plugins":[],"rules":{"no-eval":2,"no-implied-eval":2}}' \
+              --ignore-pattern node_modules || true
+          fi
+
+  # ── CodeQL (análisis profundo de GitHub) ─────────────────────────────────
+  codeql:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    strategy:
+      matrix:
+        language: [python, javascript]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
